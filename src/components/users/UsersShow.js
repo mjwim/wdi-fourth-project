@@ -19,20 +19,36 @@ class UsersShow extends React.Component {
       <div>
         <img src={ this.state.user.image }/>
         <h1>{ this.state.user.username }</h1>
-        { this.state.user.transactions &&
+        <div>
+          { this.state.user.transactions &&
         this.state.user.transactions.map((transaction, i) =>
           <div key={i}>
             <Link to = {`../transactions/${ transaction.id }`}>
-              <p>{ transaction.amount }</p>
-              <p>{ transaction.date }</p>
-              <p>{ transaction.category }</p>
-              <p>{ transaction.taxRelevant }</p>
+              <div className="columns">
+                <div className="column">
+                  <p>{ transaction.category }</p>
+                </div>
+                <div className="column">
+                  <p>{ transaction.counterParty.name }</p>
+                </div>
+                <div className="column">
+                  <p>{ transaction.date }</p>
+                </div>
+                <div className="column">
+                  <p>{ transaction.amount }</p>
+                </div>
+                <div className="column">
+                  <p>{ transaction.taxRelevant ? 'TaxTrue' : 'TaxFalse' }</p>
+                </div>
+              </div>
             </Link>
           </div>
         )}
+        </div>
       </div>
     );
   }
 }
+
 
 export default UsersShow;
