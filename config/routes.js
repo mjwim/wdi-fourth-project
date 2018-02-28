@@ -9,6 +9,9 @@ router.route('/users/:id')
 //   .put(secureRoute, users.update)
 //   .delete(secureRoute, users.delete);
 //
+router.route('/transactions/:id')
+  .get(transactions.show);
+
 router.route('/transactions')
   .get(transactions.index);
 

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const transactionSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
   date: { type: Date, required: true },
+  category: { type: String, required: true },
   counterParty: {
     name: { type: String, required: true },
     address: {
