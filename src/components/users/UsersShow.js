@@ -23,10 +23,19 @@ class UsersShow extends React.Component {
   }
 
   transactionTaxToggle = (transaction) => {
-    console.log(transaction.id);
-    transaction.taxRelevant = !transaction.taxRelevant;
     Axios
-      .put(`/api/transactions/${transaction.id}`);
+      .put(`/api/transactions/${transaction.id}`)
+      .then(() => {
+        this.setState(prevState => {
+          const newState = prevState;
+          const transactions = prevState.user.transactions.map(_transaction => {
+            if(_transaction.id === transaction.id) _transaction.taxRelevant = !_transaction.taxRelevant;
+            return _transaction;
+          });
+          newState.user.transactions = transactions;
+          return newState;
+        });
+      });
   }
 
   render() {
@@ -57,7 +66,6 @@ class UsersShow extends React.Component {
                 </div>
               </Link>
               <div className="column">
-                {/* <p>{ transaction.taxRelevant ? 'TaxTrue' : 'TaxFalse' }</p> */}
                 <button onClick={() => this.transactionTaxToggle(transaction)}>Toggle tax</button>
               </div>
             </div>

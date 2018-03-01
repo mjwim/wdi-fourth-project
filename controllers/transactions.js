@@ -24,12 +24,14 @@ function updateRoute(req, res, next) {
   Transaction
     .findById(req.params.id)
     .exec()
-    .then((criminal) => {
-      if(!criminal) return res.notFound();
-      criminal = Object.assign(criminal, req.body);
-      return criminal.save();
+    .then((transaction) => {
+      if(!transaction) return res.notFound();
+      transaction.taxRelevant = !transaction.taxRelevant; //THIS COULD/SHOULD BE ITS OWN ROUTE - TOGGLE TRANSACTION ACCOUNT
+      return transaction.save();
     })
-    .then(criminal => res.json(criminal))
+    .then(transaction => {
+      res.json(transaction);
+    })
     .catch(next);
 }
 
