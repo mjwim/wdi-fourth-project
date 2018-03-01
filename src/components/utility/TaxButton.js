@@ -1,10 +1,9 @@
 import React from 'react';
 
-const TaxButton = ({ }) => {
+const TaxButton = ({ taxButtonToggle }) => {
   return (
     <div>
-      <button onClick={history.goBack} className="main-button">
-        
+      <button onClick={ taxButtonToggle } className="main-button">
       </button>
     </div>
   );

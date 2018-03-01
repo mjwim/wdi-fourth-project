@@ -10,7 +10,8 @@ router.route('/users/:id')
 //   .delete(secureRoute, users.delete);
 //
 router.route('/transactions/:id')
-  .get(transactions.show);
+  .get(transactions.show)
+  .put(transactions.update);
 
 router.route('/transactions')
   .get(transactions.index);

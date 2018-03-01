@@ -20,7 +20,21 @@ function showRoute(req, res, next) {
     .catch(next);
 }
 
+function updateRoute(req, res, next) {
+  Transaction
+    .findById(req.params.id)
+    .exec()
+    .then((criminal) => {
+      if(!criminal) return res.notFound();
+      criminal = Object.assign(criminal, req.body);
+      return criminal.save();
+    })
+    .then(criminal => res.json(criminal))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
-  show: showRoute
+  show: showRoute,
+  update: updateRoute
 };

@@ -36,9 +36,9 @@ User
       .create([{
         amount: -20,
         date: new Date(1511111111111),
-        category: 'Groceries',
+        category: 'Utilities',
         counterParty: {
-          name: 'Tesco',
+          name: 'BT',
           address: {
             lat: 51.51,
             lng: -0.07
