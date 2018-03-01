@@ -47,7 +47,7 @@ class UsersShow extends React.Component {
   }
   componentDidMount() {
     Axios
-      .get('/api/users/5a981a7f592f7da7d8768fc3') // NEED TO CHANGE TO MAKE DYNAMIC
+      .get(`/api/users/${this.props.match.params.id}`) // NEED TO CHANGE TO MAKE DYNAMIC
       .then(res => {
         this.setState({ user: res.data, aggTran: this.aggregator(res.data) },() => console.log(this.state));
       })
