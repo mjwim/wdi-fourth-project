@@ -19,15 +19,15 @@ const categoryArray = [
       {
         name: 'BT',
         address: {
-          lat: 51.51,
-          lng: -0.07
+          lat: 51.5157408,
+          lng: -0.0979
         }
       },
       {
         name: 'British Gas',
         address: {
-          lat: 51.51,
-          lng: -0.07
+          lat: 51.514345,
+          lng: -0.104811
         }
       }
     ],
@@ -38,8 +38,8 @@ const categoryArray = [
     counterparties: [{
       name: 'General Assembly',
       address: {
-        lat: 51.51,
-        lng: -0.07
+        lat: 51.5152149,
+        lng: -0.0723318
       }}],
     creditDebit: 1,
     amountSize: 2
@@ -49,22 +49,22 @@ const categoryArray = [
       {
         name: 'Waitrose',
         address: {
-          lat: 51.51,
-          lng: -0.07
+          lat: 51.4802193,
+          lng: -0.199417
         }
       },
       {
         name: 'Tesco',
         address: {
-          lat: 51.51,
-          lng: -0.07
+          lat: 51.5111163,
+          lng: -0.1251733
         }
       },
       {
         name: 'Sainsbury\'s',
         address: {
-          lat: 51.51,
-          lng: -0.07
+          lat: 51.5081002,
+          lng: -0.1433614
         }
       }
     ],
