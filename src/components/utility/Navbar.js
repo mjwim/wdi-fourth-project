@@ -25,6 +25,10 @@ const Navbar = ({ history }) => {
       }
       {' '}
       { Auth.isAuthenticated() &&
+      <Link to="/transactions" className="standard-button">Heat Map</Link>
+      }
+      {' '}
+      { Auth.isAuthenticated() &&
       <a href="#" className="standard-button" onClick={logout}>Logout</a>
       }
       { Auth.isAuthenticated() &&

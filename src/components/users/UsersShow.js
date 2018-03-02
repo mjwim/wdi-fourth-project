@@ -49,7 +49,7 @@ class UsersShow extends React.Component {
     Axios
       .get(`/api/users/${this.props.match.params.id}`) // NEED TO CHANGE TO MAKE DYNAMIC
       .then(res => {
-        this.setState({ user: res.data, aggTran: this.aggregator(res.data) },() => console.log(this.state));
+        this.setState({ user: res.data, aggTran: this.aggregator(res.data) });
       })
       .catch(err => console.log(err));
   }
@@ -79,7 +79,7 @@ class UsersShow extends React.Component {
     return (
       <div>
         <img src={ this.state.user.image }/>
-        <h1>{ this.state.user.username }</h1>
+        <h1>{ this.state.user.first } { this.state.user.last }</h1>
         <div>
           <TaxButton
             taxButtonToggle={ this.taxButtonToggle }/>

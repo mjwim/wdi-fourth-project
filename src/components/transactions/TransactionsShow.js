@@ -1,6 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 import Axios from 'axios';
+import GoogleHeatMap from '../../components/utility/GoogleHeatMap';
 
 class TransactionsShow extends React.Component {
   state = {
@@ -18,6 +19,7 @@ class TransactionsShow extends React.Component {
     return (
       <div>
         <h1>{ this.state.transaction.amount }</h1>
+        <GoogleHeatMap center={this.state}/>
       </div>
     );
   }

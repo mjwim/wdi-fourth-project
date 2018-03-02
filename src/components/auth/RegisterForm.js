@@ -26,10 +26,20 @@ const RegisterForm = ({ handleChange, handleSubmit, user }) => {
       <div className="form-group">
         <input
           type="text"
-          name="username"
-          placeholder="Username"
+          name="first"
+          placeholder="First name"
           onChange={handleChange}
-          value={user.username}
+          value={user.first}
+          className="form-control"
+        />
+      </div>
+      <div className="form-group">
+        <input
+          type="text"
+          name="last"
+          placeholder="Last name"
+          onChange={handleChange}
+          value={user.last}
           className="form-control"
         />
       </div>

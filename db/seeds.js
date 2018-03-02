@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
+const mongoose    = require('mongoose');
+mongoose.Promise  = require('bluebird');
+const rp          = require('request-promise');
 const { db, env } = require('../config/environment');
-const User = require('../models/user');
+const User        = require('../models/user');
 const Transaction = require('../models/transaction');
 
 mongoose.connect(db[env]);
@@ -9,33 +10,111 @@ mongoose.connect(db[env]);
 User.collection.drop();
 Transaction.collection.drop();
 
-User
-  .create([{
-    username: 'Matt',
-    email: 'matt@ga.co',
-    password: 'password',
-    passwordConfirmation: 'password',
-    transactions: []
-  }, {
-    username: 'John',
-    email: 'john@ga.co',
-    password: 'password',
-    passwordConfirmation: 'password',
-    transactions: []
-  }, {
-    username: 'wallis',
-    email: 'wallis@ga.co',
-    password: 'password',
-    passwordConfirmation: 'password',
-    transactions: []
-  }])
-  .then((users => {
-    console.log(`${users.length} users created!`);
+let globalUsers     = [];
+let globalTransactions = [];
 
+const categoryArray = [{category: 'utilities', counterparties: [{
+  name: 'UTILITIES',
+  address: {
+    lat: 51.51,
+    lng: -0.07
+  }}]},
+{category: 'salary', counterparties: [{
+  name: 'SALARY',
+  address: {
+    lat: 51.51,
+    lng: -0.07
+  }}]}, {category: 'groceries', counterparties: [{
+  name: 'GROCERIES',
+  address: {
+    lat: 51.51,
+    lng: -0.07
+  }}]}];
+
+let categoryIndexSelected = null;
+
+function capitalize(name) {
+  return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
+//Radomising transaction dates/values/categories/counterparties within set parameters functions
+
+function newDate() {
+  return new Date((Math.random()*(1519991254000-1459900800000)+1459900800000));
+}
+function lowAmount() {
+  return -((Math.random()+1)*10).toFixed(2);
+}
+function midAmount() {
+  return -((Math.random()+1)*100).toFixed(2);
+}
+function highAmount() {
+  return -((Math.random()+1)*1000).toFixed(2);
+}
+function vHighAmount() {
+  return -((Math.random()+1)*10000).toFixed(2);
+}
+
+function categorySelector() {
+  categoryIndexSelected = Math.floor(Math.random()*categoryArray.length);
+  return categoryArray[categoryIndexSelected].category;
+}
+
+function counterPartySelector() {
+  const counterPartySelectorIndex = Math.floor(Math.random()*categoryArray[categoryIndexSelected].counterparties.length);
+  return categoryArray[categoryIndexSelected].counterparties[counterPartySelectorIndex];
+}
+
+rp('https://randomuser.me/api/?results=25&nat=gb')
+  .then(data => {
+    const { results } = JSON.parse(data);
+
+    results.forEach(result => {
+      const user = new User({
+        first: capitalize(result.name.first),
+        last: capitalize(result.name.last),
+        image: result.picture.large,
+        email: `${result.name.first}@${result.name.last}.com`,
+        password: 'password',
+        passwordConfirmation: 'password'
+      });
+
+      globalUsers.push(user);
+
+      return User.create(user)
+        .then(user => {
+          return Transaction
+            .create([{
+              amount: vHighAmount(),
+              date: newDate(),
+              category: categorySelector(),
+              counterParty: counterPartySelector(),
+              taxRelevant: false,
+              belongsTo: user
+            }]).then(transaction => {
+              globalTransactions.push(transaction);
+            });
+        });
+    });
+  })
+
+  .then(() => {
+    return User.create({
+      first: 'Matthew',
+      last: 'Wallis',
+      image: 'https://avatars0.githubusercontent.com/u/25264577?s=400&u=d2cd11ee0c8d642bc9cedbda43d8a60324985ee6&v=4',
+      email: 'matt@ga.co',
+      password: 'password',
+      passwordConfirmation: 'password'
+    });
+  })
+  .then(user => {
+    globalUsers.push(user);
+    console.log(`${globalUsers.length} users were created!`);
     return Transaction
       .create([{
         amount: -20,
-        date: new Date(1511111111111),
+        date: newDate(),
         category: 'Utilities',
         counterParty: {
           name: 'BT',
@@ -45,10 +124,10 @@ User
           }
         },
         taxRelevant: false,
-        belongsTo: users[0]
+        belongsTo: user
       },{
         amount: 1499,
-        date: new Date(1591111111111),
+        date: newDate(),
         category: 'Salary',
         counterParty: {
           name: 'General Assembly',
@@ -57,12 +136,12 @@ User
             lng: -0.072
           }
         },
-        taxRelevant: true,
-        belongsTo: users[0]
+        taxRelevant: false,
+        belongsTo: user
       },{
         amount: -6.50,
         category: 'Transport',
-        date: new Date(1511111111111),
+        date: newDate(),
         counterParty: {
           name: 'TFL',
           address: {
@@ -71,11 +150,11 @@ User
           }
         },
         taxRelevant: false,
-        belongsTo: users[0]
+        belongsTo: user
       },{
         amount: -75.99,
         category: 'Utilities',
-        date: new Date(1511111111111),
+        date: newDate(),
         counterParty: {
           name: 'British Gas',
           address: {
@@ -84,11 +163,11 @@ User
           }
         },
         taxRelevant: false,
-        belongsTo: users[0]
+        belongsTo: user
       },{
         amount: 32,
         category: 'Interest',
-        date: new Date(1511111111111),
+        date: newDate(),
         counterParty: {
           name: 'Monzo',
           address: {
@@ -96,144 +175,13 @@ User
             lng: -0.072170
           }
         },
-        taxRelevant: true,
-        belongsTo: users[0]
-      },{
-        amount: -30.59,
-        category: 'Groceries',
-        date: new Date(1511111111111),
-        counterParty: {
-          name: 'Waitrose',
-          address: {
-            lat: 51.515548,
-            lng: -0.072170
-          }
-        },
         taxRelevant: false,
-        belongsTo: users[1]
-      },{
-        amount: 260,
-        category: 'Freelance',
-        date: new Date(1511111111111),
-        counterParty: {
-          name: 'BREG',
-          address: {
-            lat: 51.515548,
-            lng: -0.072170
-          }
-        },
-        taxRelevant: true,
-        belongsTo: users[1]
-      },{
-        amount: -450,
-        category: 'Holidays',
-        date: new Date(1511111111111),
-        counterParty: {
-          name: 'EasyJet',
-          address: {
-            lat: 51.515548,
-            lng: -0.072170
-          }
-        },
-        taxRelevant: false,
-        belongsTo: users[1]
-      },{
-        amount: -95,
-        category: 'Clothing',
-        date: new Date(1511111111111),
-        counterParty: {
-          name: 'Rag and Bone',
-          address: {
-            lat: 51.515548,
-            lng: -0.072170
-          }
-        },
-        taxRelevant: false,
-        belongsTo: users[1]
-      },{
-        amount: -789.44,
-        category: 'Mortgage',
-        date: new Date(1511111111111),
-        counterParty: {
-          name: 'First Direct',
-          address: {
-            lat: 51.515548,
-            lng: -0.072170
-          }
-        },
-        taxRelevant: false,
-        belongsTo: users[1]
-      },{
-        amount: 94,
-        category: 'Groceries',
-        date: new Date(1511111111111),
-        counterParty: {
-          name: 'Whole Foods',
-          address: {
-            lat: 51.515548,
-            lng: -0.072170
-          }
-        },
-        taxRelevant: false,
-        belongsTo: users[2]
-      },{
-        amount: 2380,
-        category: 'Freelance',
-        date: new Date(1511111111111),
-        counterParty: {
-          name: 'BREG',
-          address: {
-            lat: 51.515548,
-            lng: -0.072170
-          }
-        },
-        taxRelevant: true,
-        belongsTo: users[2]
-      },{
-        amount: -1100.99,
-        category: 'Electronics',
-        date: new Date(1511111111111),
-        counterParty: {
-          name: 'Apple',
-          address: {
-            lat: 51.515548,
-            lng: -0.072170
-          }
-        },
-        taxRelevant: true,
-        belongsTo: users[2]
-      },{
-        amount: 79.99,
-        category: 'Leisure',
-        date: new Date(1511111111111),
-        counterParty: {
-          name: 'Virgin Active',
-          address: {
-            lat: 51.515548,
-            lng: -0.072170
-          }
-        },
-        taxRelevant: false,
-        belongsTo: users[2]
-      },{
-        amount: 150.94,
-        category: 'Eating Out',
-        date: new Date(1511111111111),
-        counterParty: {
-          name: 'KFC',
-          address: {
-            lat: 51.515548,
-            lng: -0.072170
-          }
-        },
-        taxRelevant: false,
-        belongsTo: users[2]
-      }]);
-  }))
-  .then((transactions) => {
-    console.log(`${transactions.length} transactions created!`);
+        belongsTo: user
+      }]).then(transaction => {
+        globalTransactions.push(transaction); //This has pushed whole array in as one transaction. Wrong at the moment but wont matter.
+        // console.log(`${globalTransactions.length} tranasctions were created!`);
+        console.log(globalTransactions);
+      });
   })
-  .finally(() => {
-    return mongoose.connection.close();
-  })
-  .catch(err => console.log(err));
+  .catch(err => console.log(err))
+  .finally(() =>  mongoose.connection.close());
