@@ -6,7 +6,6 @@ import mapStyles from '../../components/config/mapStyles';
 class GoogleMap extends React.Component {
 
   componentDidMount() {
-    console.log(this.props.center);
     this.map = new google.maps.Map(this.mapCanvas, {
       center: this.props.center || { lat: 51.51, lng: -0.09 },
       zoom: 14,

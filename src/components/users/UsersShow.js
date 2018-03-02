@@ -1,3 +1,5 @@
+/* global accounting */
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
@@ -5,6 +7,12 @@ import _ from 'lodash';
 import Moment from 'moment';
 
 import TaxButton  from '../../components/utility/TaxButton';
+
+accounting.settings.currency.format = {
+  pos: '%s %v',   // for positive values, eg. "$ 1.00" (required)
+  neg: '%s (%v)', // for negative values, eg. "$ (1.00)" [optional]
+  zero: '%s  -- '  // for zero values, eg. "$  --" [optional]
+};
 
 class UsersShow extends React.Component {
   state = {
@@ -92,14 +100,14 @@ class UsersShow extends React.Component {
                     <p>{ tran.category }</p>
                   </div>
                   <div className="column">
-                    <p>{ tran.amount }</p>
+                    <p>{ accounting.formatMoney(tran.amount, '£', 2) }</p>
                   </div>
                 </div>
               );
             })}
           {this.state.aggTran.everything && !this.state.taxButton &&
               <div>
-                <p>Total: {this.state.aggTran.taxable.reduce((total, tran) => total + tran.amount, 0)}</p>
+                <p>Total: { accounting.formatMoney((this.state.aggTran.taxable.reduce((total, tran) => total + tran.amount, 0)), '£', 2) }</p>
               </div>
           }
           { this.state.aggTran.everything && this.state.taxButton &&
@@ -110,7 +118,7 @@ class UsersShow extends React.Component {
                     <p>{ tran.category }</p>
                   </div>
                   <div className="column">
-                    <p>{ tran.amount }</p>
+                    <p>{ accounting.formatMoney(tran.amount, '£', 2) }</p>
                   </div>
                 </div>
               );
@@ -143,7 +151,7 @@ class UsersShow extends React.Component {
                 </Link>
                 <Link to = {`../transactions/${ transaction.id }`}>
                   <div className="column">
-                    <p>{ transaction.amount }</p>
+                    <p>{ accounting.formatMoney(transaction.amount, '£', 2)}</p>
                   </div>
                 </Link>
                 <div className="column">
