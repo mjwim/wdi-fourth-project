@@ -18,18 +18,20 @@ const categoryArray = [{category: 'utilities', counterparties: [{
   address: {
     lat: 51.51,
     lng: -0.07
-  }}]},
+  }}], creditDebit: -1,
+amountSize: 1},
 {category: 'salary', counterparties: [{
   name: 'SALARY',
   address: {
     lat: 51.51,
     lng: -0.07
-  }}]}, {category: 'groceries', counterparties: [{
+  }}], creditDebit: 1,
+amountSize: 2}, {category: 'groceries', counterparties: [{
   name: 'GROCERIES',
   address: {
     lat: 51.51,
     lng: -0.07
-  }}]}];
+  }}], creditDebit: -1, amountSize: 1}];
 
 let categoryIndexSelected = null;
 
@@ -42,17 +44,22 @@ function capitalize(name) {
 function newDate() {
   return new Date((Math.random()*(1519991254000-1459900800000)+1459900800000));
 }
+
+const amountSizes = [lowAmount, midAmount, highAmount, vHighAmount];
+
 function lowAmount() {
-  return -((Math.random()+1)*10).toFixed(2);
+  return (Math.random()*10).toFixed(2)*categoryArray[categoryIndexSelected].creditDebit;
 }
 function midAmount() {
-  return -((Math.random()+1)*100).toFixed(2);
+  return (Math.random()*100).toFixed(2)*categoryArray[categoryIndexSelected].creditDebit;
 }
+
 function highAmount() {
-  return -((Math.random()+1)*1000).toFixed(2);
+  return (Math.random()*1000).toFixed(2)*categoryArray[categoryIndexSelected].creditDebit;
 }
+
 function vHighAmount() {
-  return -((Math.random()+1)*10000).toFixed(2);
+  return (Math.random()*10000).toFixed(2)*categoryArray[categoryIndexSelected].creditDebit;
 }
 
 function categorySelector() {
@@ -83,18 +90,21 @@ rp('https://randomuser.me/api/?results=25&nat=gb')
 
       return User.create(user)
         .then(user => {
-          return Transaction
-            .create([{
-              amount: vHighAmount(),
-              date: newDate(),
-              category: categorySelector(),
-              counterParty: counterPartySelector(),
-              taxRelevant: false,
-              belongsTo: user
-            }]).then(transaction => {
-              globalTransactions.push(transaction);
-            });
+          for (let i = 0; i < 10; i++) {
+            Transaction
+              .create([{
+                date: newDate(),
+                category: categorySelector(),
+                counterParty: counterPartySelector(),
+                amount: amountSizes[categoryArray[categoryIndexSelected].amountSize](),
+                taxRelevant: false,
+                belongsTo: user
+              }]).then(transaction => {
+                globalTransactions.push(transaction);
+              });
+          }
         });
+
     });
   })
 
