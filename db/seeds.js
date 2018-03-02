@@ -13,25 +13,63 @@ Transaction.collection.drop();
 let globalUsers     = [];
 let globalTransactions = [];
 
-const categoryArray = [{category: 'utilities', counterparties: [{
-  name: 'UTILITIES',
-  address: {
-    lat: 51.51,
-    lng: -0.07
-  }}], creditDebit: -1,
-amountSize: 1},
-{category: 'salary', counterparties: [{
-  name: 'SALARY',
-  address: {
-    lat: 51.51,
-    lng: -0.07
-  }}], creditDebit: 1,
-amountSize: 2}, {category: 'groceries', counterparties: [{
-  name: 'GROCERIES',
-  address: {
-    lat: 51.51,
-    lng: -0.07
-  }}], creditDebit: -1, amountSize: 1}];
+const categoryArray = [
+  {category: 'utilities',
+    counterparties: [
+      {
+        name: 'BT',
+        address: {
+          lat: 51.51,
+          lng: -0.07
+        }
+      },
+      {
+        name: 'British Gas',
+        address: {
+          lat: 51.51,
+          lng: -0.07
+        }
+      }
+    ],
+    creditDebit: -1,
+    amountSize: 1
+  },
+  {category: 'salary',
+    counterparties: [{
+      name: 'General Assembly',
+      address: {
+        lat: 51.51,
+        lng: -0.07
+      }}],
+    creditDebit: 1,
+    amountSize: 2
+  },
+  {category: 'groceries',
+    counterparties: [
+      {
+        name: 'Waitrose',
+        address: {
+          lat: 51.51,
+          lng: -0.07
+        }
+      },
+      {
+        name: 'Tesco',
+        address: {
+          lat: 51.51,
+          lng: -0.07
+        }
+      },
+      {
+        name: 'Sainsbury\'s',
+        address: {
+          lat: 51.51,
+          lng: -0.07
+        }
+      }
+    ],
+    creditDebit: -1,
+    amountSize: 1}];
 
 let categoryIndexSelected = null;
 

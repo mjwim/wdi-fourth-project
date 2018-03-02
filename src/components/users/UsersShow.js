@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import _ from 'lodash';
+import Moment from 'moment';
 
 import TaxButton  from '../../components/utility/TaxButton';
 
@@ -137,7 +138,7 @@ class UsersShow extends React.Component {
                 </Link>
                 <Link to = {`../transactions/${ transaction.id }`}>
                   <div className="column">
-                    <p>{ transaction.date }</p>
+                    <p> { Moment(transaction.date).format('Do MMMM YYYY, h:mm:ss a') }</p>
                   </div>
                 </Link>
                 <Link to = {`../transactions/${ transaction.id }`}>
