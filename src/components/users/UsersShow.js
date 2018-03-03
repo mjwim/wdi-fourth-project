@@ -87,15 +87,21 @@ class UsersShow extends React.Component {
 
   render() {
     return (
-      <div>
-        <img src={ this.state.user.image }/>
-        <h1>{ this.state.user.first } { this.state.user.last }</h1>
+      <div className="user-show">
         <div>
-          <ToggleSwitch
-            toggle={this.taxButtonToggle}
-            taxButton={this.state.taxButton}
-          />
-          { this.state.aggTran.taxable && this.state.taxButton &&
+          <img src={ this.state.user.image }/>
+          <h1>{ this.state.user.first } { this.state.user.last }</h1>
+          <div className="summary-box">
+            <ToggleSwitch
+              toggle={this.taxButtonToggle}
+              taxButton={this.state.taxButton}
+            />
+            {this.state.aggTran.everything && this.state.taxButton &&
+              <div>
+                <p className="total">Total: { accounting.formatMoney((this.state.aggTran.taxable.reduce((total, tran) => total + tran.amount, 0)), '£', 2) }</p>
+              </div>
+            }
+            { this.state.aggTran.taxable && this.state.taxButton &&
             this.state.aggTran.taxable.map((tran, index) => {
               return(
                 <div className="columns" key={ index }>
@@ -108,12 +114,12 @@ class UsersShow extends React.Component {
                 </div>
               );
             })}
-          {this.state.aggTran.everything && this.state.taxButton &&
-              <div>
-                <p>Total: { accounting.formatMoney((this.state.aggTran.taxable.reduce((total, tran) => total + tran.amount, 0)), '£', 2) }</p>
-              </div>
-          }
-          { this.state.aggTran.everything && !this.state.taxButton &&
+            {this.state.aggTran.everything && !this.state.taxButton &&
+            <div>
+              <p className="total">Total: {this.state.aggTran.everything.reduce((total, tran) => total + tran.amount, 0)}</p>
+            </div>
+            }
+            { this.state.aggTran.everything && !this.state.taxButton &&
             this.state.aggTran.everything.map((tran, index) => {
               return(
                 <div className="columns" key={ index }>
@@ -127,44 +133,33 @@ class UsersShow extends React.Component {
               );
             }
             )
-          }
-          {this.state.aggTran.everything && !this.state.taxButton &&
-            <div>
-              <p>Total: {this.state.aggTran.everything.reduce((total, tran) => total + tran.amount, 0)}</p>
-            </div>
-          }
-          { this.state.user.transactions &&
+            }
+          </div>
+          <div className="transactions">
+            { this.state.user.transactions &&
           this.state.user.transactions.map((transaction, i) =>
-            <div key={i}>
-              <div className="columns">
-                <Link to = {`../transactions/${ transaction.id }`}>
-                  <div className="column">
-                    <p>{ transaction.category }</p>
-                  </div>
-                </Link>
-                <Link to = {`../transactions/${ transaction.id }`}>
-                  <div className="column">
-                    <p>{ transaction.counterParty.name }</p>
-                  </div>
-                </Link>
-                <Link to = {`../transactions/${ transaction.id }`}>
-                  <div className="column">
-                    <p> { Moment(transaction.date).format('Do MMMM YYYY, h:mm:ss a') }</p>
-                  </div>
-                </Link>
-                <Link to = {`../transactions/${ transaction.id }`}>
-                  <div className="column">
-                    <p>{ accounting.formatMoney(transaction.amount, '£', 2)}</p>
-                  </div>
-                </Link>
-                <div className="column">
-                  <ToggleSwitch
-                    toggle={this.transactionTaxToggle}
-                    transaction={transaction}/>
-                </div>
+            <div className="columns" key={i}>
+              <Link to = {`../transactions/${ transaction.id }`}>
+                <i className="fas fa-info-circle"></i>
+              </Link>
+              <div className="column">
+                <p>{ transaction.category }</p>
+              </div>
+              <div className="column">
+                <p>{ transaction.counterParty.name }</p>
+              </div>
+              <div className="column">
+                <p> { Moment(transaction.date).format('Do MMMM YYYY') }</p>
+              </div>
+              <div className="column">
+                <ToggleSwitch
+                  toggle={this.transactionTaxToggle}
+                  transaction={transaction}
+                />
               </div>
             </div>
           )}
+          </div>
         </div>
       </div>
     );

@@ -1,7 +1,18 @@
+/* global accounting */
+
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import GoogleMap from '../../components/utility/GoogleMap';
+import Moment from 'moment';
+
+import '../../../node_modules/react-toggle-switch/dist/css/switch.min.css';
+import ToggleSwitch from '../../components/utility/ToggleSwitch';
+
+accounting.settings.currency.format = {
+  pos: '%s %v',   // for positive values, eg. "$ 1.00" (required)
+  neg: '%s (%v)', // for negative values, eg. "$ (1.00)" [optional]
+  zero: '%s  -- '  // for zero values, eg. "$  --" [optional]
+};
 
 class TransactionsShow extends React.Component {
   state = {
@@ -20,8 +31,9 @@ class TransactionsShow extends React.Component {
       <div>
         { this.state.transaction.counterParty &&
           <div>
-            <h1>{ this.state.transaction.amount }</h1>
-            <h1>{ this.state.transaction.counterParty.address.lat }</h1>
+            <h1>{ accounting.formatMoney(this.state.transaction.amount, '£', 2) }</h1>
+            <h1>{ this.state.transaction.counterParty.name }</h1>
+            <h1>{ Moment(this.state.transaction.date).format('Do MMMM YYYY') }</h1>
             <GoogleMap center={this.state.transaction.counterParty.address}/>
           </div>
         }
