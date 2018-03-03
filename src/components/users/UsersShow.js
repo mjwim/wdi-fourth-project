@@ -98,7 +98,7 @@ class UsersShow extends React.Component {
             />
             {this.state.aggTran.everything && this.state.taxButton &&
               <div>
-                <p className="total">Total: { accounting.formatMoney((this.state.aggTran.taxable.reduce((total, tran) => total + tran.amount, 0)), '£', 2) }</p>
+                <p className="total"><strong>Total: { accounting.formatMoney((this.state.aggTran.taxable.reduce((total, tran) => total + tran.amount, 0)), '£', 2) }</strong></p>
               </div>
             }
             { this.state.aggTran.taxable && this.state.taxButton &&
@@ -116,7 +116,7 @@ class UsersShow extends React.Component {
             })}
             {this.state.aggTran.everything && !this.state.taxButton &&
             <div>
-              <p className="total">Total: {this.state.aggTran.everything.reduce((total, tran) => total + tran.amount, 0)}</p>
+              <p className="total"><strong>Total: { accounting.formatMoney((this.state.aggTran.everything.reduce((total, tran) => total + tran.amount, 0)), '£', 2)}</strong></p>
             </div>
             }
             { this.state.aggTran.everything && !this.state.taxButton &&
@@ -124,7 +124,7 @@ class UsersShow extends React.Component {
               return(
                 <div className="columns" key={ index }>
                   <div className="column">
-                    <p>{ tran.category }</p>
+                    <p><strong>{ tran.category }</strong></p>
                   </div>
                   <div className="column">
                     <p>{ accounting.formatMoney(tran.amount, '£', 2) }</p>
@@ -150,6 +150,9 @@ class UsersShow extends React.Component {
               </div>
               <div className="column">
                 <p> { Moment(transaction.date).format('Do MMMM YYYY') }</p>
+              </div>
+              <div className="column">
+                <p> { accounting.formatMoney((transaction.amount), '£', 2) }</p>
               </div>
               <div className="column">
                 <ToggleSwitch

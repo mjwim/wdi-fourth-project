@@ -4,6 +4,7 @@ const rp          = require('request-promise');
 const { db, env } = require('../config/environment');
 const User        = require('../models/user');
 const Transaction = require('../models/transaction');
+const { categoryArray } = require('./CategoryArray');
 
 mongoose.connect(db[env]);
 
@@ -12,64 +13,6 @@ Transaction.collection.drop();
 
 let globalUsers     = [];
 let globalTransactions = [];
-
-const categoryArray = [
-  {category: 'utilities',
-    counterparties: [
-      {
-        name: 'BT',
-        address: {
-          lat: 51.5157408,
-          lng: -0.0979
-        }
-      },
-      {
-        name: 'British Gas',
-        address: {
-          lat: 51.514345,
-          lng: -0.104811
-        }
-      }
-    ],
-    creditDebit: -1,
-    amountSize: 1
-  },
-  {category: 'salary',
-    counterparties: [{
-      name: 'General Assembly',
-      address: {
-        lat: 51.5152149,
-        lng: -0.0723318
-      }}],
-    creditDebit: 1,
-    amountSize: 2
-  },
-  {category: 'groceries',
-    counterparties: [
-      {
-        name: 'Waitrose',
-        address: {
-          lat: 51.4802193,
-          lng: -0.199417
-        }
-      },
-      {
-        name: 'Tesco',
-        address: {
-          lat: 51.5111163,
-          lng: -0.1251733
-        }
-      },
-      {
-        name: 'Sainsbury\'s',
-        address: {
-          lat: 51.5081002,
-          lng: -0.1433614
-        }
-      }
-    ],
-    creditDebit: -1,
-    amountSize: 1}];
 
 let categoryIndexSelected = null;
 

@@ -1,6 +1,6 @@
 import React    from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Login       from './components/auth/Login';
 import Register    from './components/auth/Register';
@@ -18,10 +18,7 @@ class App extends React.Component {
       <Router>
         <div>
           <header>
-            <h1><Link to="/">Tax App</Link></h1>
-            <h2>For the <span>Taxie</span> in everyone...</h2>
             <Navbar />
-            <hr />
           </header>
           <main>
             <Route path="/login" component={Login} />
