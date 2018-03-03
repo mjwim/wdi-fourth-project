@@ -8,7 +8,6 @@ import Moment from 'moment';
 
 import '../../../node_modules/react-toggle-switch/dist/css/switch.min.css';
 import ToggleSwitch from '../../components/utility/ToggleSwitch';
-import TaxButton  from '../../components/utility/TaxButton';
 
 accounting.settings.currency.format = {
   pos: '%s %v',   // for positive values, eg. "$ 1.00" (required)
@@ -92,9 +91,10 @@ class UsersShow extends React.Component {
         <img src={ this.state.user.image }/>
         <h1>{ this.state.user.first } { this.state.user.last }</h1>
         <div>
-          <ToggleSwitch/>
-          <TaxButton
-            taxButtonToggle={ this.taxButtonToggle }/>
+          <ToggleSwitch
+            toggle={this.taxButtonToggle}
+            taxButton={this.state.taxButton}
+          />
           { this.state.aggTran.taxable && this.state.taxButton &&
             this.state.aggTran.taxable.map((tran, index) => {
               return(

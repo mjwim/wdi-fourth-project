@@ -7,15 +7,18 @@ class ToggleSwitch extends Component {
     return this.props.transaction.taxRelevant;
   }
 
+  taxButtonState = () => {
+    return this.props.taxButton;
+  }
+
   toggleTax = () => {
     this.props.toggle(this.props.transaction);
-    this.setState({ switched: this.props.transaction.taxRelevant });
   }
 
   render() {
     return (
       <div>
-        <Switch onClick={this.toggleTax} on={this.props.transaction && this.switchState()} />
+        <Switch onClick={this.toggleTax} on={this.props.transaction && this.switchState() || this.props.taxButton && this.taxButtonState() } />
       </div>
     );
   }
