@@ -6,6 +6,8 @@ import Axios from 'axios';
 import _ from 'lodash';
 import Moment from 'moment';
 
+import '../../../node_modules/react-toggle-switch/dist/css/switch.min.css';
+import ToggleSwitch from '../../components/utility/ToggleSwitch';
 import TaxButton  from '../../components/utility/TaxButton';
 
 accounting.settings.currency.format = {
@@ -90,9 +92,10 @@ class UsersShow extends React.Component {
         <img src={ this.state.user.image }/>
         <h1>{ this.state.user.first } { this.state.user.last }</h1>
         <div>
+          <ToggleSwitch/>
           <TaxButton
             taxButtonToggle={ this.taxButtonToggle }/>
-          { this.state.aggTran.taxable && !this.state.taxButton &&
+          { this.state.aggTran.taxable && this.state.taxButton &&
             this.state.aggTran.taxable.map((tran, index) => {
               return(
                 <div className="columns" key={ index }>
@@ -105,12 +108,12 @@ class UsersShow extends React.Component {
                 </div>
               );
             })}
-          {this.state.aggTran.everything && !this.state.taxButton &&
+          {this.state.aggTran.everything && this.state.taxButton &&
               <div>
                 <p>Total: { accounting.formatMoney((this.state.aggTran.taxable.reduce((total, tran) => total + tran.amount, 0)), '£', 2) }</p>
               </div>
           }
-          { this.state.aggTran.everything && this.state.taxButton &&
+          { this.state.aggTran.everything && !this.state.taxButton &&
             this.state.aggTran.everything.map((tran, index) => {
               return(
                 <div className="columns" key={ index }>
@@ -125,7 +128,7 @@ class UsersShow extends React.Component {
             }
             )
           }
-          {this.state.aggTran.everything && this.state.taxButton &&
+          {this.state.aggTran.everything && !this.state.taxButton &&
             <div>
               <p>Total: {this.state.aggTran.everything.reduce((total, tran) => total + tran.amount, 0)}</p>
             </div>
@@ -155,7 +158,9 @@ class UsersShow extends React.Component {
                   </div>
                 </Link>
                 <div className="column">
-                  <button onClick={() => this.transactionTaxToggle(transaction)}>Toggle tax</button>
+                  <ToggleSwitch
+                    toggle={this.transactionTaxToggle}
+                    transaction={transaction}/>
                 </div>
               </div>
             </div>

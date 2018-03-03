@@ -21,6 +21,7 @@ class TransactionsIndex extends React.Component {
         { this.state.transactions &&
         this.state.transactions.map((transaction, i) =>
           <div key={i}>
+            <p>{ Math.abs(transaction.amount) }</p>
             <p>{ transaction.counterParty.address.lat }</p>
             <p>{ transaction.counterParty.address.lng }</p>
           </div>
