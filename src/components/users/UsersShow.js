@@ -90,7 +90,7 @@ class UsersShow extends React.Component {
       <div className="user-show">
         <div>
           <img src={ this.state.user.image }/>
-          <h1>{ this.state.user.first } { this.state.user.last }</h1>
+          <h1><strong>{ this.state.user.first } { this.state.user.last }</strong></h1>
           <div className="summary-box">
             <ToggleSwitch
               toggle={this.taxButtonToggle}
@@ -98,7 +98,7 @@ class UsersShow extends React.Component {
             />
             {this.state.aggTran.everything && this.state.taxButton &&
               <div>
-                <p className="total"><strong>Total: { accounting.formatMoney((this.state.aggTran.taxable.reduce((total, tran) => total + tran.amount, 0)), '£', 2) }</strong></p>
+                <p className="total"><strong>Tax Total: { accounting.formatMoney((this.state.aggTran.taxable.reduce((total, tran) => total + tran.amount, 0)), '£', 2) }</strong></p>
               </div>
             }
             { this.state.aggTran.taxable && this.state.taxButton &&
@@ -106,7 +106,7 @@ class UsersShow extends React.Component {
               return(
                 <div className="columns" key={ index }>
                   <div className="column">
-                    <p>{ tran.category }</p>
+                    <p><strong>{ tran.category }</strong></p>
                   </div>
                   <div className="column">
                     <p>{ accounting.formatMoney(tran.amount, '£', 2) }</p>

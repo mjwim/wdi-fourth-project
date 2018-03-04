@@ -23,7 +23,9 @@ background-color: lighten(#FFF6EF, 1%);
   border: 1px solid white;
   background-color: lighten(#BEDFDE, 15%);
   padding: 20px;
-  margin: 20px;
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 10px;
 }
 
 .summary-box strong {
@@ -43,7 +45,9 @@ background-color: lighten(#FFF6EF, 1%);
   border: 1px solid white;
   background-color: lighten(#BEDFDE, 15%);
   padding: 20px;
-  margin: 20px;
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 10px;
 }
 
 .total {
@@ -60,29 +64,6 @@ background-color: lighten(#FFF6EF, 1%);
 // GOOGLE MAPS
 
 .google-map {
-  height: 200px;
+  height: 400px;
   width: 100%;
-}
-
-#floating-panel {
-  position: absolute;
-  top: 10px;
-  left: 25%;
-  z-index: 5;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  text-align: center;
-  font-family: 'Roboto','sans-serif';
-  line-height: 30px;
-  padding-left: 10px;
-}
-#floating-panel {
-  background-color: #fff;
-  border: 1px solid #999;
-  left: 25%;
-  padding: 5px;
-  position: absolute;
-  top: 10px;
-  z-index: 5;
 }

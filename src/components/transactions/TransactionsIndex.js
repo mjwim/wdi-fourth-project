@@ -4,7 +4,8 @@ import GoogleHeatMap from '../../components/utility/GoogleHeatMap';
 
 class TransactionsIndex extends React.Component {
   state = {
-    transactions: []
+    transactions: [],
+    latlng: new google.maps.LatLng(51.5081, -0.1248)
   }
 
   componentDidMount() {
@@ -16,8 +17,8 @@ class TransactionsIndex extends React.Component {
 
   render() {
     return (
-      <div>
-        <GoogleHeatMap center={this.state}/>
+      <div className="heat-map">
+        <GoogleHeatMap center={this.state.latlng}/>
         { this.state.transactions &&
         this.state.transactions.map((transaction, i) =>
           <div key={i}>
