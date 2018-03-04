@@ -60,22 +60,22 @@ const categoryArray = [
       {
         name: 'TfL',
         address: {
-          lat: 51.4802193,
-          lng: -0.199417
+          lat: 51.496424,
+          lng: -0.143921
         }
       },
       {
         name: 'Uber',
         address: {
-          lat: 51.5111163,
-          lng: -0.1251733
+          lat: 51.514278,
+          lng: -0.071724
         }
       },
       {
         name: 'South West Trains',
         address: {
-          lat: 51.5081002,
-          lng: -0.1433614
+          lat: 51.503165,
+          lng: -0.112305
         }
       }
     ],
@@ -86,22 +86,22 @@ const categoryArray = [
       {
         name: 'Monzo',
         address: {
-          lat: 51.4802193,
-          lng: -0.199417
+          lat: 51.528616,
+          lng: -0.093234
         }
       },
       {
         name: 'HSBC',
         address: {
-          lat: 51.5111163,
-          lng: -0.1251733
+          lat: 51.514317,
+          lng: -0.108379
         }
       },
       {
-        name: 'First Direct',
+        name: 'Revolut',
         address: {
-          lat: 51.5081002,
-          lng: -0.1433614
+          lat: 51.504924,
+          lng: -0.019504
         }
       }
     ],
@@ -112,22 +112,22 @@ const categoryArray = [
       {
         name: 'BERG',
         address: {
-          lat: 51.4802193,
-          lng: -0.199417
+          lat: 51.3802193,
+          lng: -0.200417
         }
       },
       {
         name: 'Local Authority',
         address: {
-          lat: 51.5111163,
-          lng: -0.1251733
+          lat: 51.548586,
+          lng: -0.142561
         }
       },
       {
         name: 'Company Limited',
         address: {
-          lat: 51.5081002,
-          lng: -0.1433614
+          lat: 51.504924,
+          lng: -0.3195041
         }
       }
     ],
@@ -138,48 +138,48 @@ const categoryArray = [
       {
         name: 'Easyjet',
         address: {
-          lat: 51.4802193,
-          lng: -0.199417
+          lat: 51.523484,
+          lng: -0.158057
         }
       },
       {
         name: 'British Airways',
         address: {
-          lat: 51.5111163,
-          lng: -0.1251733
+          lat: 51.469776,
+          lng: -0.459462
         }
       },
       {
         name: 'Hotel',
         address: {
-          lat: 51.5081002,
-          lng: -0.1433614
+          lat: 51.518387,
+          lng: -0.135057
         }
       }
     ],
-    creditDebit: 1,
+    creditDebit: -1,
     amountSize: 2},
   {category: 'Clothing',
     counterparties: [
       {
         name: 'Primark',
         address: {
-          lat: 51.4802193,
-          lng: -0.199417
+          lat: 51.516534,
+          lng: -0.131188
         }
       },
       {
         name: 'Selfridges',
         address: {
-          lat: 51.5111163,
-          lng: -0.1251733
+          lat: 51.514564,
+          lng: -0.153811
         }
       },
       {
         name: 'John Lewis',
         address: {
-          lat: 51.5081002,
-          lng: -0.1433614
+          lat: 51.515341,
+          lng: -0.145212
         }
       }
     ],
@@ -190,22 +190,22 @@ const categoryArray = [
       {
         name: 'Apple',
         address: {
-          lat: 51.4802193,
-          lng: -0.199417
+          lat: 51.514220,
+          lng: -0.141984
         }
       },
       {
         name: 'Maplin',
         address: {
-          lat: 51.5111163,
-          lng: -0.1251733
+          lat: 51.510528,
+          lng: -0.083859
         }
       },
       {
         name: 'Curry\'s',
         address: {
-          lat: 51.5081002,
-          lng: -0.1433614
+          lat: 51.466189,
+          lng: -0.190157
         }
       }
     ],
@@ -216,22 +216,22 @@ const categoryArray = [
       {
         name: 'Virgin Active',
         address: {
-          lat: 51.4802193,
-          lng: -0.199417
+          lat: 51.513228,
+          lng: -0.157078
         }
       },
       {
         name: 'Theatre',
         address: {
-          lat: 51.5111163,
-          lng: -0.1251733
+          lat: 51.509310,
+          lng: -0.131678
         }
       },
       {
         name: 'Football tickets',
         address: {
-          lat: 51.5081002,
-          lng: -0.1433614
+          lat: 51.481663,
+          lng: -0.190956
         }
       }
     ],
@@ -242,22 +242,22 @@ const categoryArray = [
       {
         name: 'KFC',
         address: {
-          lat: 51.4802193,
-          lng: -0.199417
+          lat: 51.521706,
+          lng: -0.157139
         }
       },
       {
         name: 'Pizza Express',
         address: {
-          lat: 51.5111163,
-          lng: -0.1251733
+          lat: 51.508451,
+          lng: -0.126156
         }
       },
       {
         name: 'Hawksmoor',
         address: {
-          lat: 51.5081002,
-          lng: -0.1433614
+          lat: 51.509721,
+          lng: -0.136162
         }
       }
     ],

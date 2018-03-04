@@ -53,7 +53,7 @@ function counterPartySelector() {
   return categoryArray[categoryIndexSelected].counterparties[counterPartySelectorIndex];
 }
 
-rp('https://randomuser.me/api/?results=25&nat=gb')
+rp('https://randomuser.me/api/?results=50&nat=gb')
   .then(data => {
     const { results } = JSON.parse(data);
 

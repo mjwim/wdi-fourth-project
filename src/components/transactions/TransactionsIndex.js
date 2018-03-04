@@ -15,7 +15,7 @@ class TransactionsIndex extends React.Component {
       .get('/api/transactions')
       .then(res => {
         this.setState({ transactions: res.data, heatMapData: res.data.map((transaction) => {
-          return {location: new google.maps.LatLng(transaction.counterParty.address.lat, transaction.counterParty.address.lng)};
+          return {location: new google.maps.LatLng(transaction.counterParty.address.lat, transaction.counterParty.address.lng) };
           // , weight: transaction.amount/1000 ?????????
         })}
         );
