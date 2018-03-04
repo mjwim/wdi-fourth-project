@@ -26,6 +26,17 @@ background-color: lighten(#FFF6EF, 1%);
   margin: 20px;
 }
 
+.summary-box strong {
+  color: #6E7FFD;
+}
+.fa-info-circle {
+  color: #6E7FFD;
+}
+
+.transaction-link {
+  padding: 12px;
+}
+
 .transactions {
   color: #6E7FFD;
   border-spacing: border-box;

@@ -57,7 +57,7 @@ class UsersShow extends React.Component {
   }
   componentDidMount() {
     Axios
-      .get(`/api/users/${this.props.match.params.id}`) // NEED TO CHANGE TO MAKE DYNAMIC
+      .get(`/api/users/${this.props.match.params.id}`)
       .then(res => {
         this.setState({ user: res.data, aggTran: this.aggregator(res.data) });
       })
@@ -139,7 +139,7 @@ class UsersShow extends React.Component {
             { this.state.user.transactions &&
           this.state.user.transactions.map((transaction, i) =>
             <div className="columns" key={i}>
-              <Link to = {`../transactions/${ transaction.id }`}>
+              <Link to= {`../transactions/${ transaction.id }`} className="transaction-link">
                 <i className="fas fa-info-circle"></i>
               </Link>
               <div className="column">

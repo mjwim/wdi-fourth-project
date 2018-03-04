@@ -71,7 +71,7 @@ rp('https://randomuser.me/api/?results=25&nat=gb')
 
       return User.create(user)
         .then(user => {
-          for (let i = 0; i < 10; i++) {
+          for (let i = 0; i < 100; i++) {
             Transaction
               .create([{
                 date: newDate(),
