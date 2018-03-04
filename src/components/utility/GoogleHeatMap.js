@@ -13,6 +13,8 @@ class GoogleHeatMap extends React.Component {
       // mapTypeId: 'satellite'
     });
 
+    console.log(this.props.heatMapData);
+
     const heatmap = new google.maps.visualization.HeatmapLayer({
       data: this.props.heatMapData
     });
@@ -21,6 +23,7 @@ class GoogleHeatMap extends React.Component {
 
   componentWillUnmount() {
     this.map = null;
+    console.log(this.props.heatMapData);
   }
 
   render() {
