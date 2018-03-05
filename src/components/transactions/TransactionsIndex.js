@@ -3,6 +3,7 @@
 import React from 'react';
 import Axios from 'axios';
 import GoogleHeatMap from '../../components/utility/GoogleHeatMap';
+import BackButton from '../utility/BackButton';
 
 class TransactionsIndex extends React.Component {
   state = {
@@ -25,9 +26,12 @@ class TransactionsIndex extends React.Component {
 
   render() {
     return (
-      <div className="heat-map">
-        { this.state.heatMapData[0] &&
+      <div>
+        <BackButton history={this.props.history} />
+        <div className="heat-map">
+          { this.state.heatMapData[0] &&
         <GoogleHeatMap heatMapData={this.state.heatMapData}/> }
+        </div>
       </div>
     );
   }

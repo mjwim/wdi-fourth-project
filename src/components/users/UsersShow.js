@@ -8,11 +8,12 @@ import Moment from 'moment';
 
 import '../../../node_modules/react-toggle-switch/dist/css/switch.min.css';
 import ToggleSwitch from '../../components/utility/ToggleSwitch';
+import TaxYearFilter from '../../components/utility/TaxYearFilter';
 
 accounting.settings.currency.format = {
-  pos: '%s %v',   // for positive values, eg. "$ 1.00" (required)
-  neg: '%s (%v)', // for negative values, eg. "$ (1.00)" [optional]
-  zero: '%s  -- '  // for zero values, eg. "$  --" [optional]
+  pos: '%s %v',
+  neg: '%s (%v)',
+  zero: '%s  -- '
 };
 
 class UsersShow extends React.Component {
@@ -22,7 +23,11 @@ class UsersShow extends React.Component {
       taxable: null,
       everything: null
     },
-    taxButton: false
+    taxButton: false,
+    sortBy: 'date',
+    sortDirection: 'desc',
+    query: '',
+    taxYearFilter: '1970|2100'
   }
 
   aggregator = (user) => {
@@ -55,6 +60,7 @@ class UsersShow extends React.Component {
       return taxObject;
     }, {taxable: [], everything: []});
   }
+
   componentDidMount() {
     Axios
       .get(`/api/users/${this.props.match.params.id}`)
@@ -85,83 +91,119 @@ class UsersShow extends React.Component {
       });
   }
 
+  handleTaxYear = (e) => {
+    const taxYearFilter = e.target.value;
+    this.setState({ taxYearFilter });
+  }
+
+  filterTaxYear = () => {
+    const { taxYearFilter, aggTran } = this.state;
+    const [startDate, endDate] = taxYearFilter.split('|');
+
+    const startDateFilter = new Date(startDate);
+    const endDateFilter = new Date(endDate);
+
+    const taxObject = () => {
+      if(this.state.user.transactions) {
+        const user = {transactions: []};
+        //
+        user.transactions = _.filter(this.state.user.transactions, transaction => new Date(transaction.date).getTime() > startDateFilter.getTime() && new Date(transaction.date).getTime() < endDateFilter.getTime() );
+
+        const taxObject = this.aggregator(user);
+        return taxObject;
+      }
+    };
+
+    const filteredTaxable = aggTran.taxable;
+    const filteredEverything = aggTran.everything;
+
+    return taxObject() || { taxable: filteredTaxable, everything: filteredEverything };
+
+  }
+
   render() {
+    const aggTranFiltered = this.filterTaxYear();
+
     return (
       <div className="user-show">
         <div>
           <img src={ this.state.user.image }/>
           <h1><strong>{ this.state.user.first } { this.state.user.last }</strong></h1>
           <div className="summary-box">
+            <TaxYearFilter
+              handleTaxYear={ this.handleTaxYear }
+              filterTaxYear={ this.filterTaxYear }
+            />
             <ToggleSwitch
               toggle={this.taxButtonToggle}
               taxButton={this.state.taxButton}
             />
-            {this.state.aggTran.everything && this.state.taxButton &&
-              <div>
-                <p className="total"><strong>Tax Total: { accounting.formatMoney((this.state.aggTran.taxable.reduce((total, tran) => total + tran.amount, 0)), '£', 2) }</strong></p>
-              </div>
+            {this.state.aggTran.taxable && this.state.taxButton &&
+                <div>
+                  <p className="total"><strong>Tax Total: { accounting.formatMoney((aggTranFiltered.taxable.reduce((total, tran) => total + tran.amount, 0)), '£', 2) }</strong></p>
+                </div>
             }
             { this.state.aggTran.taxable && this.state.taxButton &&
-            this.state.aggTran.taxable.map((tran, index) => {
-              return(
-                <div className="columns" key={ index }>
-                  <div className="column">
-                    <p><strong>{ tran.category }</strong></p>
+              aggTranFiltered.taxable.map((tran, index) => {
+                return(
+                  <div className="columns" key={ index }>
+                    <div className="column">
+                      <p><strong>{ tran.category }</strong></p>
+                    </div>
+                    <div className="column">
+                      <p>{ accounting.formatMoney(tran.amount, '£', 2) }</p>
+                    </div>
                   </div>
-                  <div className="column">
-                    <p>{ accounting.formatMoney(tran.amount, '£', 2) }</p>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
             {this.state.aggTran.everything && !this.state.taxButton &&
-            <div>
-              <p className="total"><strong>Total: { accounting.formatMoney((this.state.aggTran.everything.reduce((total, tran) => total + tran.amount, 0)), '£', 2)}</strong></p>
-            </div>
+              <div>
+                <p className="total"><strong>Total: { accounting.formatMoney((aggTranFiltered.everything.reduce((total, tran) => total + tran.amount, 0)), '£', 2)}</strong></p>
+              </div>
             }
             { this.state.aggTran.everything && !this.state.taxButton &&
-            this.state.aggTran.everything.map((tran, index) => {
-              return(
-                <div className="columns" key={ index }>
-                  <div className="column">
-                    <p><strong>{ tran.category }</strong></p>
+              aggTranFiltered.everything.map((tran, index) => {
+                return(
+                  <div className="columns" key={ index }>
+                    <div className="column">
+                      <p><strong>{ tran.category }</strong></p>
+                    </div>
+                    <div className="column">
+                      <p>{ accounting.formatMoney(tran.amount, '£', 2) }</p>
+                    </div>
                   </div>
-                  <div className="column">
-                    <p>{ accounting.formatMoney(tran.amount, '£', 2) }</p>
-                  </div>
-                </div>
-              );
-            }
-            )
+                );
+              }
+              )
             }
           </div>
           <div className="transactions">
             { this.state.user.transactions &&
-          this.state.user.transactions.map((transaction, i) =>
-            <div className="columns" key={i}>
-              <Link to= {`../transactions/${ transaction.id }`} className="transaction-link">
-                <i className="fas fa-info-circle"></i>
-              </Link>
-              <div className="column">
-                <p>{ transaction.category }</p>
+            this.state.user.transactions.map((transaction, i) =>
+              <div className="columns" key={i}>
+                <Link to= {`../transactions/${ transaction.id }`} className="transaction-link">
+                  <i className="fas fa-info-circle"></i>
+                </Link>
+                <div className="column">
+                  <p>{ transaction.category }</p>
+                </div>
+                <div className="column">
+                  <p>{ transaction.counterParty.name }</p>
+                </div>
+                <div className="column">
+                  <p> { Moment(transaction.date).format('Do MMMM YYYY') }</p>
+                </div>
+                <div className="column">
+                  <p> { accounting.formatMoney((transaction.amount), '£', 2) }</p>
+                </div>
+                <div className="column">
+                  <ToggleSwitch
+                    toggle={this.transactionTaxToggle}
+                    transaction={transaction}
+                  />
+                </div>
               </div>
-              <div className="column">
-                <p>{ transaction.counterParty.name }</p>
-              </div>
-              <div className="column">
-                <p> { Moment(transaction.date).format('Do MMMM YYYY') }</p>
-              </div>
-              <div className="column">
-                <p> { accounting.formatMoney((transaction.amount), '£', 2) }</p>
-              </div>
-              <div className="column">
-                <ToggleSwitch
-                  toggle={this.transactionTaxToggle}
-                  transaction={transaction}
-                />
-              </div>
-            </div>
-          )}
+            )}
           </div>
         </div>
       </div>

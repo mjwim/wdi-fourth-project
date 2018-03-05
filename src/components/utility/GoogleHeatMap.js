@@ -9,8 +9,8 @@ class GoogleHeatMap extends React.Component {
     this.map = new google.maps.Map(this.mapCanvas,  {
       center: new google.maps.LatLng(51.5081, -0.1248),
       zoom: 12.5,
-      style: mapStyles
-      // mapTypeId: 'satellite'
+      style: mapStyles,
+      mapTypeId: 'satellite'
     });
 
     const heatmap = new google.maps.visualization.HeatmapLayer({

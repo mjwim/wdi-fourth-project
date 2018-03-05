@@ -4,11 +4,12 @@ import React from 'react';
 import Axios from 'axios';
 import GoogleMap from '../../components/utility/GoogleMap';
 import Moment from 'moment';
+import BackButton from '../utility/BackButton';
 
 accounting.settings.currency.format = {
-  pos: '%s %v',   // for positive values, eg. "$ 1.00" (required)
-  neg: '%s (%v)', // for negative values, eg. "$ (1.00)" [optional]
-  zero: '%s  -- '  // for zero values, eg. "$  --" [optional]
+  pos: '%s %v',
+  neg: '%s (%v)',
+  zero: '%s  -- '
 };
 
 class TransactionsShow extends React.Component {
@@ -26,14 +27,17 @@ class TransactionsShow extends React.Component {
   render() {
     return (
       <div>
-        { this.state.transaction.counterParty &&
+        <BackButton history={this.props.history} />
+        <div>
+          { this.state.transaction.counterParty &&
           <div>
             <h1>{ accounting.formatMoney(this.state.transaction.amount, '£', 2) }</h1>
             <h1>{ this.state.transaction.counterParty.name }</h1>
             <h1>{ Moment(this.state.transaction.date).format('Do MMMM YYYY') }</h1>
             <GoogleMap center={this.state.transaction.counterParty.address}/>
           </div>
-        }
+          }
+        </div>
       </div>
     );
   }
