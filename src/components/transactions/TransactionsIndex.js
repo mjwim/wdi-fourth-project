@@ -4,6 +4,7 @@ import React from 'react';
 import Axios from 'axios';
 import GoogleHeatMap from '../../components/utility/GoogleHeatMap';
 import BackButton from '../utility/BackButton';
+import Auth from '../../lib/Auth';
 
 class TransactionsIndex extends React.Component {
   state = {
@@ -13,11 +14,10 @@ class TransactionsIndex extends React.Component {
 
   componentDidMount() {
     Axios
-      .get('/api/transactions')
+      .get('/api/transactions', { headers: { authorization: `Bearer ${Auth.getToken()}`}})
       .then(res => {
         this.setState({ transactions: res.data, heatMapData: res.data.map((transaction) => {
           return {location: new google.maps.LatLng(transaction.counterParty.address.lat, transaction.counterParty.address.lng) };
-          // , weight: transaction.amount/1000 ?????????
         })}
         );
       })

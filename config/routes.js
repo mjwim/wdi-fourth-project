@@ -2,19 +2,20 @@ const router = require('express').Router();
 const auth  = require('../controllers/auth');
 const users  = require('../controllers/users');
 const transactions  = require('../controllers/transactions');
-// const secureRoute = require('../lib/secureRoute');
+const secureRoute = require('../lib/secureRoute');
 
 router.route('/users/:id')
-  .get(users.show);
-//   .put(secureRoute, users.update)
-//   .delete(secureRoute, users.delete);
-//
+  .get(secureRoute, users.show);
+
+router.route('/users')
+  .get(users.index);
+
 router.route('/transactions/:id')
-  .get(transactions.show)
+  .get(secureRoute, transactions.show)
   .put(transactions.update);
 
 router.route('/transactions')
-  .get(transactions.index);
+  .get(secureRoute, transactions.index);
 
 router.route('/register')
   .post(auth.register);

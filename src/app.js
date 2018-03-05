@@ -8,6 +8,7 @@ import UsersShow  from './components/users/UsersShow';
 import TransactionsShow  from './components/transactions/TransactionsShow';
 import TransactionsIndex  from './components/transactions/TransactionsIndex';
 import Navbar      from './components/utility/Navbar';
+import ProtectedRoute from './components/utility/ProtectedRoute';
 
 import './scss/style.scss';
 
@@ -23,9 +24,9 @@ class App extends React.Component {
           <main>
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/users/:id" component={UsersShow} />
-            <Route path="/transactions/:id" component={TransactionsShow} />
-            <Route exact path="/transactions" component={TransactionsIndex} />
+            <ProtectedRoute path="/users/:id" component={UsersShow} />
+            <ProtectedRoute path="/transactions/:id" component={TransactionsShow} />
+            <ProtectedRoute exact path="/transactions" component={TransactionsIndex} />
           </main>
         </div>
       </Router>

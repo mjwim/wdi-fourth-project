@@ -21,7 +21,6 @@ class GoogleHeatMap extends React.Component {
 
   componentWillUnmount() {
     this.map = null;
-    console.log(this.props.heatMapData);
   }
 
   render() {

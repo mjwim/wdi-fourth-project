@@ -26,7 +26,7 @@ function updateRoute(req, res, next) {
     .exec()
     .then((transaction) => {
       if(!transaction) return res.notFound();
-      transaction.taxRelevant = !transaction.taxRelevant; //THIS COULD/SHOULD BE ITS OWN ROUTE - TOGGLE TRANSACTION ACCOUNT
+      transaction.taxRelevant = !transaction.taxRelevant;
       return transaction.save();
     })
     .then(transaction => {
