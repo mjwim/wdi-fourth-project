@@ -3,27 +3,33 @@ import React from 'react';
 const LoginForm = ({ handleChange, handleSubmit, user }) => {
   return (
     <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <input
-          type="text"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          value={user.email}
-          className="form-control"
-        />
+      <div className="field">
+        <label className="label">Email</label>
+        <div className="control">
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+            value={user.email}
+            className="input"
+          />
+        </div>
       </div>
-      <div className="form-group">
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-          value={user.password}
-          className="form-control"
-        />
+      <div className="field">
+        <label className="label">Password</label>
+        <div className="control">
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+            value={user.password}
+            className="input"
+          />
+        </div>
       </div>
-      <button className="main-button">Login</button>
+      <button className="button is-info">Login</button>
     </form>
   );
 };
