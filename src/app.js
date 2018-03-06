@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login       from './components/auth/Login';
 import Register    from './components/auth/Register';
 import UsersShow  from './components/users/UsersShow';
+import Home from './components/Home';
 import TransactionsShow  from './components/transactions/TransactionsShow';
 import TransactionsIndex  from './components/transactions/TransactionsIndex';
 import Navbar      from './components/utility/Navbar';
@@ -22,6 +23,7 @@ class App extends React.Component {
             <Navbar />
           </header>
           <main>
+            <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <ProtectedRoute path="/users/:id" component={UsersShow} />

@@ -16,40 +16,47 @@ const Navbar = ({ history }) => {
 
   return(
 
-    <nav className="navbar is-active" role="navigation" aria-label="main navigation">
+    <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link to="/">
-          <div className="navbar-item">
-            <img src="https://www.moneywise.co.uk/sites/default/files/styles/node_full_top/public/images/articles/taxonmoney.jpg?itok=joxBpyNg" alt="Tax" width="80" height="60"/>
+          <div className="navbar-item nav-bar-logo">
           </div>
         </Link>
-        <div className="navbar-item">
-          { !Auth.isAuthenticated() &&
-          <Link to="/login" className="standard-button">Login</Link>
-          }
-        </div>
-        <div className="navbar-item">
-          { !Auth.isAuthenticated() &&
-          <Link to="/register" className="standard-button">Register</Link>
-          }
-        </div>
-        <div className="navbar-item">
-          { Auth.isAuthenticated() &&
-          <Link to="/transactions" className="standard-button">Heat Map</Link>
-          }
-        </div>
-        <div className="navbar-item">
-          { Auth.isAuthenticated() &&
-          <a href="#" className="standard-button" onClick={logout}>Logout</a>
-          }
-        </div>
-        <div className="navbar-item">
-          { Auth.isAuthenticated() &&
-          <Link to={`/users/${user.userId}`} className="standard-button">Profile</Link>
-          }
+        <div className="navbar-burger is-active" data-target="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
+      <div className="navbar-menu is-active" id="navMenu">
+        { !Auth.isAuthenticated() &&
+            <div className="navbar-item">
+              <Link to="/login" className="standard-button">Login</Link>
+            </div>
+        }
+        { !Auth.isAuthenticated() &&
+        <div className="navbar-item">
+          <Link to="/register" className="standard-button">Register</Link>
+        </div>
+        }
+        { Auth.isAuthenticated() &&
+        <div className="navbar-item">
+          <Link to="/transactions" className="standard-button">Heat Map</Link>
+        </div>
+        }
+        { Auth.isAuthenticated() &&
+        <div className="navbar-item">
+          <a href="#" className="standard-button" onClick={logout}>Logout</a>
+        </div>
+        }
+        { Auth.isAuthenticated() &&
+        <div className="navbar-item">
+          <Link to={`/users/${user.userId}`} className="standard-button">Profile</Link>
+        </div>
+        }
+      </div>
     </nav>
+
   );
 };
 

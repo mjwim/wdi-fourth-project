@@ -5,6 +5,36 @@
   // background-color: blue;
 }
 
+.home-page {
+  height: 800px;
+}
+
+.home-page-logo {
+  background-image: url("/assets/taxy-app-logo.png");
+  height: 500px;
+  width: 100%;
+  margin: 100px 0;
+  padding: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.navbar {
+  background-color: #FFF6EF;
+}
+
+
+div.navbar-item.nav-bar-logo {
+  border-spacing: border-box;
+  background-image: url("/assets/taxy-app-logo.png");
+  height: 80px;
+  width: 70px;
+  margin: 10px;
+  background-size: cover;
+}
+
+
 body{
 background-color: lighten(#FFF6EF, 1%);
 }
