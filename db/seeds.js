@@ -53,7 +53,7 @@ function counterPartySelector() {
   return categoryArray[categoryIndexSelected].counterparties[counterPartySelectorIndex];
 }
 
-rp('https://randomuser.me/api/?results=50&nat=gb')
+rp('https://randomuser.me/api/?results=100&nat=gb')
   .then(data => {
     const { results } = JSON.parse(data);
 
@@ -68,6 +68,8 @@ rp('https://randomuser.me/api/?results=50&nat=gb')
       });
 
       globalUsers.push(user);
+
+      // console.log(`${user.first} was created`);
 
       return User.create(user)
         .then(user => {
