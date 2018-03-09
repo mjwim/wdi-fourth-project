@@ -114,7 +114,8 @@ rp('https://randomuser.me/api/?results=100&nat=gb')
           address: {
             lat: 51.51,
             lng: -0.07
-          }
+          },
+          website: 'www.bt.com'
         },
         taxRelevant: false,
         belongsTo: user
@@ -127,7 +128,8 @@ rp('https://randomuser.me/api/?results=100&nat=gb')
           address: {
             lat: 51.5,
             lng: -0.072
-          }
+          },
+          website: 'www.ga.co'
         },
         taxRelevant: false,
         belongsTo: user
@@ -140,7 +142,8 @@ rp('https://randomuser.me/api/?results=100&nat=gb')
           address: {
             lat: 51.515548,
             lng: -0.072170
-          }
+          },
+          website: 'www.tfl.gov.uk'
         },
         taxRelevant: false,
         belongsTo: user
@@ -153,7 +156,8 @@ rp('https://randomuser.me/api/?results=100&nat=gb')
           address: {
             lat: 51.515548,
             lng: -0.072170
-          }
+          },
+          website: 'www.britishgas.co.uk'
         },
         taxRelevant: false,
         belongsTo: user
@@ -166,7 +170,8 @@ rp('https://randomuser.me/api/?results=100&nat=gb')
           address: {
             lat: 51.515548,
             lng: -0.072170
-          }
+          },
+          website: 'www.monzo.com'
         },
         taxRelevant: false,
         belongsTo: user

@@ -28,7 +28,7 @@ const categoryArray = [
         lat: 51.5152149,
         lng: -0.0723318
       },
-      website: 'www.bt.com'
+      website: 'www.ga.co'
     }
     ],
     creditDebit: 1,
@@ -42,7 +42,7 @@ const categoryArray = [
           lat: 51.4802193,
           lng: -0.199417
         },
-        website: 'www.bt.com'
+        website: 'www.waitrose.com'
       },
       {
         name: 'Tesco',
@@ -50,7 +50,7 @@ const categoryArray = [
           lat: 51.5111163,
           lng: -0.1251733
         },
-        website: 'www.bt.com'
+        website: 'www.tesco.com'
       },
       {
         name: 'Sainsbury\'s',
@@ -58,7 +58,7 @@ const categoryArray = [
           lat: 51.5081002,
           lng: -0.1433614
         },
-        website: 'www.bt.com'
+        website: 'www.sainsburys.co.uk'
       }
     ],
     creditDebit: -1,
@@ -71,7 +71,7 @@ const categoryArray = [
           lat: 51.496424,
           lng: -0.143921
         },
-        website: 'www.bt.com'
+        website: 'www.tfl.gov.uk'
       },
       {
         name: 'Uber',
@@ -79,7 +79,7 @@ const categoryArray = [
           lat: 51.514278,
           lng: -0.071724
         },
-        website: 'www.bt.com'
+        website: 'www.uber.com'
       },
       {
         name: 'South West Trains',
@@ -87,7 +87,7 @@ const categoryArray = [
           lat: 51.503165,
           lng: -0.112305
         },
-        website: 'www.bt.com'
+        website: 'www.southwesternrailway.com'
       }
     ],
     creditDebit: -1,
@@ -100,7 +100,7 @@ const categoryArray = [
           lat: 51.528616,
           lng: -0.093234
         },
-        website: 'www.bt.com'
+        website: 'www.monzo.com'
       },
       {
         name: 'HSBC',
@@ -108,7 +108,7 @@ const categoryArray = [
           lat: 51.514317,
           lng: -0.108379
         },
-        website: 'www.bt.com'
+        website: 'www.hsbc.com'
       },
       {
         name: 'Revolut',
@@ -116,7 +116,7 @@ const categoryArray = [
           lat: 51.504924,
           lng: -0.019504
         },
-        website: 'www.bt.com'
+        website: 'www.revolut.com'
       }
     ],
     creditDebit: 1,
@@ -124,12 +124,12 @@ const categoryArray = [
   {category: 'Freelance',
     counterparties: [
       {
-        name: 'BERG',
+        name: 'BBC',
         address: {
           lat: 51.3802193,
           lng: -0.200417
         },
-        website: 'www.bt.com'
+        website: 'www.bbc.co.uk'
       },
       {
         name: 'Local Authority',
@@ -137,7 +137,7 @@ const categoryArray = [
           lat: 51.548586,
           lng: -0.142561
         },
-        website: 'www.bt.com'
+        website: 'www.lbhf.gov.uk'
       },
       {
         name: 'Company Limited',
@@ -145,7 +145,7 @@ const categoryArray = [
           lat: 51.504924,
           lng: -0.3195041
         },
-        website: 'www.bt.com'
+        website: 'www.companieshouse.gov.uk'
       }
     ],
     creditDebit: 1,
@@ -158,7 +158,7 @@ const categoryArray = [
           lat: 51.523484,
           lng: -0.158057
         },
-        website: 'www.bt.com'
+        website: 'www.easyjet.com'
       },
       {
         name: 'British Airways',
@@ -166,7 +166,7 @@ const categoryArray = [
           lat: 51.469776,
           lng: -0.459462
         },
-        website: 'www.bt.com'
+        website: 'www.ba.com'
       },
       {
         name: 'Hotel',
@@ -174,7 +174,7 @@ const categoryArray = [
           lat: 51.518387,
           lng: -0.135057
         },
-        website: 'www.bt.com'
+        website: 'www.hotel.com'
       }
     ],
     creditDebit: -1,
@@ -187,7 +187,7 @@ const categoryArray = [
           lat: 51.516534,
           lng: -0.131188
         },
-        website: 'www.bt.com'
+        website: 'www.primark.com'
       },
       {
         name: 'Selfridges',
@@ -195,7 +195,7 @@ const categoryArray = [
           lat: 51.514564,
           lng: -0.153811
         },
-        website: 'www.bt.com'
+        website: 'www.selfridges.com'
       },
       {
         name: 'John Lewis',
@@ -203,7 +203,7 @@ const categoryArray = [
           lat: 51.515341,
           lng: -0.145212
         },
-        website: 'www.bt.com'
+        website: 'www.johnlewis.com'
       }
     ],
     creditDebit: -1,
@@ -216,7 +216,7 @@ const categoryArray = [
           lat: 51.514220,
           lng: -0.141984
         },
-        website: 'www.bt.com'
+        website: 'www.apple.com'
       },
       {
         name: 'Maplin',
@@ -224,7 +224,7 @@ const categoryArray = [
           lat: 51.510528,
           lng: -0.083859
         },
-        website: 'www.bt.com'
+        website: 'www.maplin.com'
       },
       {
         name: 'Curry\'s',
@@ -232,7 +232,7 @@ const categoryArray = [
           lat: 51.466189,
           lng: -0.190157
         },
-        website: 'www.bt.com'
+        website: 'www.currys.co.uk'
       }
     ],
     creditDebit: -1,
@@ -245,7 +245,7 @@ const categoryArray = [
           lat: 51.513228,
           lng: -0.157078
         },
-        website: 'www.bt.com'
+        website: 'www.virginactive.com'
       },
       {
         name: 'Theatre',
@@ -253,7 +253,7 @@ const categoryArray = [
           lat: 51.509310,
           lng: -0.131678
         },
-        website: 'www.bt.com'
+        website: 'www.theatre.com'
       },
       {
         name: 'Football tickets',
@@ -261,7 +261,7 @@ const categoryArray = [
           lat: 51.481663,
           lng: -0.190956
         },
-        website: 'www.bt.com'
+        website: 'www.thefa.com'
       }
     ],
     creditDebit: -1,
@@ -274,7 +274,7 @@ const categoryArray = [
           lat: 51.521706,
           lng: -0.157139
         },
-        website: 'www.bt.com'
+        website: 'www.kfc.com'
       },
       {
         name: 'Pizza Express',
@@ -282,7 +282,7 @@ const categoryArray = [
           lat: 51.508451,
           lng: -0.126156
         },
-        website: 'www.bt.com'
+        website: 'www.pizzaexpress.com'
       },
       {
         name: 'Hawksmoor',
@@ -290,7 +290,7 @@ const categoryArray = [
           lat: 51.509721,
           lng: -0.136162
         },
-        website: 'www.bt.com'
+        website: 'www.thehawksmoor.com'
       }
     ],
     creditDebit: -1,

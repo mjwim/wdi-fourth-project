@@ -9,7 +9,8 @@ const transactionSchema = new mongoose.Schema({
     address: {
       lat: { type: Number, required: true},
       lng: { type: Number, required: true}
-    }
+    },
+    website: { type: String, required: true }
   },
   taxRelevant: {type: Boolean, required: true, default: false},
   belongsTo: {type: mongoose.Schema.ObjectId, ref: 'User', required: true}
