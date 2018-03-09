@@ -191,7 +191,10 @@ class UsersShow extends React.Component {
                       <p>{ transaction.category }</p>
                     </div>
                     <div className="column">
-                      <img src={`https://logo.clearbit.com/${ transaction.counterParty.name }.com?size=50`} alt={ transaction.counterParty.name }/>
+                      <p>{ transaction.counterParty.name }</p>
+                    </div>
+                    <div className="column">
+                      <img src={`https://logo.clearbit.com/${ transaction.counterParty.website }?size=50`} alt={ transaction.counterParty.name }/>
                     </div>
                     <div className="column">
                       <p> { Moment(transaction.date).format('Do MMMM YYYY') }</p>
