@@ -129,24 +129,28 @@ class UsersShow extends React.Component {
       <div className="user-show">
         { this.props.match.params.id === Auth.getPayload().userId ?
           (
-            <div>
-              <img src={ this.state.user.image }/>
-              <h1><strong>{ this.state.user.first } { this.state.user.last }</strong></h1>
-              <div className="summary-box">
-                <TaxYearFilter
-                  handleTaxYear={ this.handleTaxYear }
-                  filterTaxYear={ this.filterTaxYear }
-                />
-                <ToggleSwitch
-                  toggle={this.taxButtonToggle}
-                  taxButton={this.state.taxButton}
-                />
-                {this.state.aggTran.taxable && this.state.taxButton &&
+            <div className="columns is-multiline">
+              <div className="column is-3 is-offset-3 name">
+                <h1><strong>{ this.state.user.first } { this.state.user.last }</strong></h1>
+                <hr/>
+                <img src={ this.state.user.image }/>
+              </div>
+              <div className="column is-3">
+                <div className="summary-box">
+                  <TaxYearFilter
+                    handleTaxYear={ this.handleTaxYear }
+                    filterTaxYear={ this.filterTaxYear }
+                  />
+                  <ToggleSwitch
+                    toggle={this.taxButtonToggle}
+                    taxButton={this.state.taxButton}
+                  />
+                  {this.state.aggTran.taxable && this.state.taxButton &&
                     <div>
                       <p className="total"><strong>Tax Total: { accounting.formatMoney((aggTranFiltered.taxable.reduce((total, tran) => total + tran.amount, 0)), '£', 2) }</strong></p>
                     </div>
-                }
-                { this.state.aggTran.taxable && this.state.taxButton &&
+                  }
+                  { this.state.aggTran.taxable && this.state.taxButton &&
                   aggTranFiltered.taxable.map((tran, index) => {
                     return(
                       <div className="columns" key={ index }>
@@ -159,12 +163,12 @@ class UsersShow extends React.Component {
                       </div>
                     );
                   })}
-                {this.state.aggTran.everything && !this.state.taxButton &&
+                  {this.state.aggTran.everything && !this.state.taxButton &&
                   <div>
                     <p className="total"><strong>Total: { accounting.formatMoney((aggTranFiltered.everything.reduce((total, tran) => total + tran.amount, 0)), '£', 2)}</strong></p>
                   </div>
-                }
-                { this.state.aggTran.everything && !this.state.taxButton &&
+                  }
+                  { this.state.aggTran.everything && !this.state.taxButton &&
                   aggTranFiltered.everything.map((tran, index) => {
                     return(
                       <div className="columns" key={ index }>
@@ -178,10 +182,12 @@ class UsersShow extends React.Component {
                     );
                   }
                   )
-                }
+                  }
+                </div>
               </div>
-              <div className="transactions">
-                { this.state.user.transactions &&
+              <div className="column is-half is-offset-one-quarter">
+                <div className="transactions">
+                  { this.state.user.transactions &&
                 this.state.user.transactions.map((transaction, i) =>
                   <div className="columns" key={i}>
                     <Link to= {`../transactions/${ transaction.id }`} className="transaction-link">
@@ -210,6 +216,7 @@ class UsersShow extends React.Component {
                     </div>
                   </div>
                 )}
+                </div>
               </div>
             </div>
           )
