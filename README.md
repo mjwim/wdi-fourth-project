@@ -1,10 +1,10 @@
 #TAXY
 
-###What is TAXY
+### What is TAXY
 
 TAXY is
 
-###How to use
+### How to use
 
 Taxy is more a proof of concept as I there is no way I could get authoristation to upload users bank account details even with their permission. Therefore, although a user can sign up they will not be able to import their own data.
 
@@ -27,14 +27,14 @@ Google Heat Maps API
 Git
 GitHub
 
-###Creating TAXY
+### Creating TAXY
 
 
 COMMENTS ON APPROACH/DESIGN/KEY FEATUREs
 
 COMMENTS ON BEST BITS OF CODE
 
-###What extenstions to TAXY could there be?
+### What extenstions to TAXY could there be?
 
 Allow for users to link in their own transaction data.
 
