@@ -11,8 +11,8 @@ mongoose.connect(db[env]);
 User.collection.drop();
 Transaction.collection.drop();
 
-let globalUsers     = [];
-let globalTransactions = [];
+const globalUsers = [];
+const globalTransactions = [];
 
 let categoryIndexSelected = null;
 
@@ -97,85 +97,23 @@ rp('https://randomuser.me/api/?results=100&nat=gb')
       email: 'matt@ga.co',
       password: 'password',
       passwordConfirmation: 'password'
-    });
-  })
-  .then(user => {
-    globalUsers.push(user);
-    console.log(`${globalUsers.length} users were created!`);
-    return Transaction
-      .create([{
-        amount: -20,
-        date: newDate(),
-        category: 'Utilities',
-        counterParty: {
-          name: 'BT',
-          address: {
-            lat: 51.51,
-            lng: -0.07
-          },
-          website: 'www.bt.com'
-        },
-        taxRelevant: false,
-        belongsTo: user
-      },{
-        amount: 1499,
-        date: newDate(),
-        category: 'Salary',
-        counterParty: {
-          name: 'General Assembly',
-          address: {
-            lat: 51.5,
-            lng: -0.072
-          },
-          website: 'www.ga.co'
-        },
-        taxRelevant: false,
-        belongsTo: user
-      },{
-        amount: -6.50,
-        category: 'Transport',
-        date: newDate(),
-        counterParty: {
-          name: 'TFL',
-          address: {
-            lat: 51.515548,
-            lng: -0.072170
-          },
-          website: 'www.tfl.gov.uk'
-        },
-        taxRelevant: false,
-        belongsTo: user
-      },{
-        amount: -75.99,
-        category: 'Utilities',
-        date: newDate(),
-        counterParty: {
-          name: 'British Gas',
-          address: {
-            lat: 51.515548,
-            lng: -0.072170
-          },
-          website: 'www.britishgas.co.uk'
-        },
-        taxRelevant: false,
-        belongsTo: user
-      },{
-        amount: 32,
-        category: 'Interest',
-        date: newDate(),
-        counterParty: {
-          name: 'Monzo',
-          address: {
-            lat: 51.515548,
-            lng: -0.072170
-          },
-          website: 'www.monzo.com'
-        },
-        taxRelevant: false,
-        belongsTo: user
-      }]).then(transaction => {
-        globalTransactions.push(transaction);
-        console.log(globalTransactions);
+    })
+      .then(user => {
+        globalUsers.push(user);
+        console.log(`${globalUsers.length} users were created!`);
+        for (let i = 0; i < 100; i++) {
+          Transaction
+            .create([{
+              date: newDate(),
+              category: categorySelector(),
+              counterParty: counterPartySelector(),
+              amount: amountSizes[categoryArray[categoryIndexSelected].amountSize](),
+              taxRelevant: false,
+              belongsTo: user
+            }]).then(transaction => {
+              globalTransactions.push(transaction);
+            });
+        }
       });
   })
   .catch(err => console.log(err))
