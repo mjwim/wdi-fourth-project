@@ -69,8 +69,6 @@ rp('https://randomuser.me/api/?results=100&nat=gb')
 
       globalUsers.push(user);
 
-      // console.log(`${user.first} was created`);
-
       return User.create(user)
         .then(user => {
           for (let i = 0; i < 100; i++) {
@@ -176,8 +174,7 @@ rp('https://randomuser.me/api/?results=100&nat=gb')
         taxRelevant: false,
         belongsTo: user
       }]).then(transaction => {
-        globalTransactions.push(transaction); //This has pushed whole array in as one transaction. Wrong at the moment but wont matter.
-        // console.log(`${globalTransactions.length} tranasctions were created!`);
+        globalTransactions.push(transaction);
         console.log(globalTransactions);
       });
   })
