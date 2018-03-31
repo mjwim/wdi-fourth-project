@@ -31,12 +31,22 @@ class TransactionsShow extends React.Component {
         <BackButton history={this.props.history} />
         { this.state.transaction.belongsTo === Auth.getPayload().userId ?
           (<div>
-
             { this.state.transaction.counterParty &&
             <div>
-              <h1>{ accounting.formatMoney(this.state.transaction.amount, '£', 2) }</h1>
-              <h1>{ this.state.transaction.counterParty.name }</h1>
-              <h1>{ Moment(this.state.transaction.date).format('Do MMMM YYYY') }</h1>
+              <div className="columns form-container">
+                <div className="column">
+                  <p>{ this.state.transaction.counterParty.name }</p>
+                </div>
+                <div className="column">
+                  <img src={`https://logo.clearbit.com/${ this.state.transaction.counterParty.website }?size=50`} alt={ this.state.transaction.counterParty.name }/>
+                </div>
+                <div className="column">
+                  <p>{ Moment(this.state.transaction.date).format('Do MMMM YYYY') }</p>
+                </div>
+                <div className="column">
+                  <p>{ accounting.formatMoney(this.state.transaction.amount, '£', 2) }</p>
+                </div>
+              </div>
               <GoogleMap center={this.state.transaction.counterParty.address}/>
             </div>
             }
