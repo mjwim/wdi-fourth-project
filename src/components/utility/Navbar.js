@@ -6,13 +6,12 @@ import Auth from '../../lib/Auth';
 const Navbar = ({ history }) => {
 
   function logout(e) {
-    e.preventDefault(); //needs to be in as we are clicking on an <a> tag
+    e.preventDefault();
     Auth.logout();
-    history.push('/'); // the last item in the history array is actually the current location
+    history.push('/');
   }
 
   const user = Auth.getPayload();
-
 
   return(
 
