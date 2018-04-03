@@ -14,13 +14,23 @@ import ProtectedRoute from './components/utility/ProtectedRoute';
 import './scss/style.scss';
 
 class App extends React.Component {
+  state = {
+    showBurgerMenu: false
+  }
+
+  toggleBurgerMenu = () => {
+    this.setState({ showBurgerMenu: !this.state.showBurgerMenu });
+  }
 
   render() {
     return (
       <Router>
         <div>
           <header>
-            <Navbar />
+            <Navbar
+              toggleBurgerMenu={this.toggleBurgerMenu}
+              showBurgerMenu={this.state.showBurgerMenu}
+            />
           </header>
           <main>
             <Route exact path="/" component={Home} />
