@@ -139,7 +139,6 @@ class UsersShow extends React.Component {
                 <div className="summary-box">
                   <TaxYearFilter
                     handleTaxYear={ this.handleTaxYear }
-                    filterTaxYear={ this.filterTaxYear }
                   />
                   <ToggleSwitch
                     toggle={this.taxButtonToggle}
@@ -203,7 +202,7 @@ class UsersShow extends React.Component {
                       <img src={`https://logo.clearbit.com/${ transaction.counterParty.website }?size=50`} alt={ transaction.counterParty.name }/>
                     </div>
                     <div className="column">
-                      <p> { Moment(transaction.date).format('Do MMMM YYYY') }</p>
+                      <p> { Moment(transaction.date).format('DD/MM/YYYY') }</p>
                     </div>
                     <div className="column">
                       <p> { accounting.formatMoney((transaction.amount), '£', 2) }</p>

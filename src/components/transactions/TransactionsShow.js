@@ -41,7 +41,7 @@ class TransactionsShow extends React.Component {
                   <img src={`https://logo.clearbit.com/${ this.state.transaction.counterParty.website }?size=50`} alt={ this.state.transaction.counterParty.name }/>
                 </div>
                 <div className="column">
-                  <p>{ Moment(this.state.transaction.date).format('Do MMMM YYYY') }</p>
+                  <p>{ Moment(this.state.transaction.date).format('DD/MM/YYYY') }</p>
                 </div>
                 <div className="column">
                   <p>{ accounting.formatMoney(this.state.transaction.amount, '£', 2) }</p>

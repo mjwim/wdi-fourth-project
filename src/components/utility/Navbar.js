@@ -22,7 +22,7 @@ const Navbar = ({ history }) => {
           <div className="navbar-item nav-bar-logo">
           </div>
         </Link>
-        <div className="navbar-burger is-active" data-target="navMenu">
+        <div className="navbar-burger is-active" data-target="navMenu" id="navBurger">
           <span></span>
           <span></span>
           <span></span>
@@ -45,13 +45,13 @@ const Navbar = ({ history }) => {
         </div>
         }
         { Auth.isAuthenticated() &&
-        <div className="navbar-item">
-          <a href="#" className="standard-button" onClick={logout}>Logout</a>
-        </div>
+          <div className="navbar-item">
+            <Link to={`/users/${user.userId}`} className="standard-button">Profile</Link>
+          </div>
         }
         { Auth.isAuthenticated() &&
         <div className="navbar-item">
-          <Link to={`/users/${user.userId}`} className="standard-button">Profile</Link>
+          <a href="#" className="standard-button" onClick={logout}>Logout</a>
         </div>
         }
       </div>

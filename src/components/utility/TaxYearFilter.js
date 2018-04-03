@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TaxYearFilter = ({ handleTaxYear, filterTaxYear }) => {
+const TaxYearFilter = ({ handleTaxYear }) => {
   return(
     <div className="field has-addons has-addons-centered">
       <div className="control" onChange={ handleTaxYear }>
@@ -12,9 +12,6 @@ const TaxYearFilter = ({ handleTaxYear, filterTaxYear }) => {
           </select>
         </div>
       </div>
-      <button className="button is-info" onClick={ filterTaxYear }>
-        Apply
-      </button>
     </div>
   );
 };
