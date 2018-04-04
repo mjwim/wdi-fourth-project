@@ -27,6 +27,9 @@ Google Heat Maps API
 Git
 GitHub
 
+
+Balsamiq was used for wireframes, with the main focus on the user show page.
+
 <img width="1440" alt="screen shot 2018-02-27 at 16 00 30" src="https://user-images.githubusercontent.com/25264577/37903069-87b340bc-30ee-11e8-8d62-bed38f415a17.png">
 
 ### Challenges faced
