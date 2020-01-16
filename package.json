@@ -23,7 +23,7 @@
     "moment": "^2.20.1",
     "mongoose": "^5.0.7",
     "mongoose-unique-validator": "^1.0.6",
-    "morgan": "^1.8.2",
+    "morgan": "^1.9.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
