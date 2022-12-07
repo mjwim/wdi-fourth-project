@@ -17,7 +17,7 @@
     "axios": "^0.16.2",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.1",
-    "express": "^4.15.4",
+    "express": "^4.17.3",
     "jsonwebtoken": "^8.1.0",
     "lodash": "^4.17.13",
     "moment": "^2.20.1",
